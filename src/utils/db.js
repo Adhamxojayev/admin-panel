@@ -3,7 +3,7 @@ import pg from 'pg'
 
 // postgres://YourUserName:YourPassword@YourHostname:5432/YourDatabaseName
 const pool = new pg.Pool({
-  connectionString: 'postgres://ahror:111133@localhost:5432/admin_panel'
+  connectionString: 'postgres://postgres:111133@localhost:5432/admin_panel'
 })
 
 
