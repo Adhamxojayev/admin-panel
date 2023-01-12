@@ -42,15 +42,3 @@ CREATE TABLE news(
   updated_at timestamp,
   deleted_at timestamp
 );
-
-
-INSERT INTO admins(username, password) VALUES ('ali', crypt('123456789', gen_salt('bf')));
-
-
-INSERT INTO categories(category_name) VALUES ('hp'), ('samsung'), ('acer'), ('asus');
-
-
-INSERT INTO products (product_name, product_price ,product_description ,category_id, product_image) VALUES
-('hp pavilon', 200, '2 yil ishlatilgan', 1, 'https://picsum.photos/400'),
-('hp pavilon 2', 300, '1 yil ishlatilgan', 1, 'https://picsum.photos/400'),
-('acer 2', 140, '4 yil ishlatilgan', 3, 'https://picsum.photos/400');
