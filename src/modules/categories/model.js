@@ -6,9 +6,11 @@ const GET = async () => {
       SELECT 
           c.category_id as "categoryId",
           c.category_name as "categoryName",
-          json_agg( p.*  ) as products
+          COALESCE(
+            NULLIF(json_agg( p.*  )::text, '[null]'), '[]'
+          )::json as products
       FROM categories as c
-      JOIN products as p on p.category_id = c.category_id and p.deleted_at is null
+      LEFT JOIN products as p on p.category_id = c.category_id and p.deleted_at is null
       group by c.category_id
       order by "categoryId" asc
     `);
