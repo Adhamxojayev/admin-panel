@@ -1,4 +1,4 @@
-import { fetchAll } from '../../utils/db.js';
+import { fetchAll, fetch } from '../../utils/db.js';
 
 const GET = async ({productName, page, limit}) => {
   try {
@@ -15,6 +15,31 @@ const GET = async ({productName, page, limit}) => {
     console.log(error.message);
   }
 };
+
+
+const POST = async ({
+  productName,
+  productPrice,
+  productDescription,
+  productImage = '',
+  categoryId,
+}) => {
+  try {
+    console.log(productName, productPrice, productDescription, productImage);
+    return await fetch(
+      `
+      INSERT INTO products 
+          (product_name, product_price, product_description, product_image, category_id)
+      VALUES ($1, $2, $3, $4, $5) 
+      returning *   
+    `,
+      [productName, productPrice, productDescription, productImage, categoryId]
+    );
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 
 
 const PUT = async ({ productId },{ productName, productPrice, productDescription }) => {
@@ -57,5 +82,6 @@ with  old_products as (
         
 export default {
   GET,
-  PUT
+  PUT,
+  POST
 };
