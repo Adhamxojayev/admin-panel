@@ -28,8 +28,20 @@ const PUT = async (req, res) => {
   }
 };
 
+
+const DELETE = async (req, res) => {
+  try {
+    const product = await model.DELETE(req.params);
+    return res.status(200).send(product);
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+
 export default {
   GET,
   PUT,
-  POST
+  POST,
+  DELETE,
 };

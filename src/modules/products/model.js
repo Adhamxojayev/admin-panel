@@ -78,10 +78,25 @@ with  old_products as (
     console.log(error.message);
   }
 };
-// , 
+
+
+const DELETE = async ({productId}) => {
+  try {
+    return await fetch(`
+      update products 
+        set 
+          deleted_at = current_timestamp
+      where product_id = $1   
+      returning * 
+    `, [productId])
+  } catch (error) {
+    console.log(error.message);
+  }
+}
         
 export default {
   GET,
   PUT,
-  POST
+  POST,
+  DELETE
 };
